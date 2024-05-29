@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 	memset(&serv_addr, 0, sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_addr.s_addr = inet_addr(argv[1]);
-	serv_addr.sin_port = htonl(atoi(argv[1]));
+	serv_addr.sin_port = htons(atoi(argv[1]));
 
 	//调用connect向服务器端发送连接请求
 	if (connect(sock, (struct sockaddr_in*)&serv_addr, sizeof(serv_addr)) == -1)
