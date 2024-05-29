@@ -24,18 +24,18 @@ int main(int argc, char* argv[])
 		exit(1);
 	}
 
-	//µ÷ÓÃsocket´´½¨Ì×½Ó×Ö
+	//è°ƒç”¨socketåˆ›å»ºå¥—æ¥å­—
 	sock = socket(PF_INET, SOCK_STREAM, 0);
 	if (sock == -1)
 		error_handling("socket() error");
 
-	//³õÊ¼»¯serv_addr
+	//åˆå§‹åŒ–serv_addr
 	memset(&serv_addr, 0, sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+	serv_addr.sin_addr.s_addr = inet_addr(argv[1]);
 	serv_addr.sin_port = htonl(atoi(argv[1]));
 
-	//µ÷ÓÃconnectÏò·şÎñÆ÷¶Ë·¢ËÍÁ¬½ÓÇëÇó
+	//è°ƒç”¨connectå‘æœåŠ¡å™¨ç«¯å‘é€è¿æ¥è¯·æ±‚
 	if (connect(sock, (struct sockaddr_in*)&serv_addr, sizeof(serv_addr)) == -1)
 		error_handling("connect() error");
 
